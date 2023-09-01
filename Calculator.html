@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        body {
+            display: flex;
+            /* flex-direction: column; */
+            justify-content: center;
+            align-items: center;
+            font-size: 25px;
+            background: linear-gradient(rgb(250, 124, 124), rgb(138, 138, 231));
+        }
+
+        .container {
+            padding: 15px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(31, 31, 31);
+            box-shadow: 10px 10px 10px rgb(0, 0, 0, 0.7);
+        }
+
+        button {
+            height: 50px;
+            width: 70px;
+            margin: 5px;
+            /* padding: 25px; */
+            border: none;
+            /* border-top-left-radius: 20px; */
+            border-radius: 30px;
+            box-shadow: 3px 3px 10px rgba(255, 255, 255, 0.3);
+            background-color: rgb(59, 59, 59);
+            font-size: 20px;
+            font-weight: 500;
+            color: rgb(237, 250, 232);
+        }
+
+        button:hover {
+            box-shadow: 2px 2px 7px rgba(255, 255, 255, 0.6);
+            background-color: rgb(78, 78, 78);
+        }
+
+        .plus,
+        .multi,
+        .equal,
+        .semi,
+        .per,
+        .minus,
+        .AC,
+        .C {
+            background-color: rgb(246, 190, 0);
+            color: black;
+        }
+
+        .semi:hover {
+            background-color: #de970b;
+        }
+
+        .equal:hover {
+            background-color: #de970b;
+        }
+
+        .multi:hover {
+            background-color: #de970b;
+        }
+
+        .plus:hover {
+            background-color: #de970b;
+        }
+
+        .AC:hover {
+            background-color: #de970b;
+        }
+
+        .C:hover {
+            background-color: #de970b;
+        }
+
+        .minus:hover {
+            background-color: #de970b;
+        }
+
+        .per:hover {
+            background-color: #de970b;
+        }
+
+        input {
+            border: none;
+            /* border: 1px solid gray; */
+            border-radius: 10px;
+            /* background: none; */
+            color: white;
+            font-size: 30px;
+            height: 150px;
+            width: 330px;
+            margin-bottom: 10px;
+            background-color: rgb(68, 68, 68);
+            text-align:end;
+
+        }
+
+        .zero {
+            width: 155px;
+        }
+
+        /* media queries */
+        @media screen and (max-width: 400px) {
+            .container {
+                height: 400px;
+                width: 300px;
+            }
+
+            .buttons-container {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .input {
+                height: 130px;
+                width: 310px;
+            }
+
+            button {
+                margin: 5px;
+                /* padding: ; */
+                height: 40px;
+                width: 60px;
+            }
+
+            .zero {
+                width: 135px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="input-result"><input type="text" name="input" class="input" placeholder="0"></div>
+        <div class="buttons-container">
+            <div class="row-btn">
+                <button class="btn AC">AC</button>
+                <button class="btn C">DEL</button>
+                <button class="btn per">%</button>
+                <button class="btn semi">/</button>
+            </div>
+            <div class="row-btn">
+                <button class="btn 7">7</button>
+                <button class="btn 8">8</button>
+                <button class="btn 9">9</button>
+                <button class="btn multi">*</button>
+            </div>
+            <div class="row-btn">
+                <button class="btn 4">4</button>
+                <button class="btn 5">5</button>
+                <button class="btn 6">6</button>
+                <button class="btn minus">-</button>
+            </div>
+            <div class="row-btn">
+                <button class="btn 1">1</button>
+                <button class="btn 2">2</button>
+                <button class="btn 3">3</button>
+                <button class="btn plus">+</button>
+            </div>
+            <div class="row-btn">
+                <button class="btn zero">0</button>
+                <!-- <button class="btn dot"></button> -->
+                <button class="btn dot">.</button>
+                <button class="btn equal">=</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    let string = "";
+    let buttons = document.querySelectorAll('button');
+    Array.from(buttons).forEach((button)=>{
+        button.addEventListener('click', (e)=>{
+            if(e.target.innerHTML == '='){
+                string = eval(string);
+                document.querySelector('input').value = string;
+            }
+            else if(e.target.innerHTML == 'AC'){
+                string = "";
+                document.querySelector('input').value = string;
+            }
+            else if(e.target.innerHTML == 'DEL'){
+                string = string.substring(0, string.length-1);
+                document.querySelector('input').value = string;
+            }
+            else{
+            console.log(e.target);
+            string = string+e.target.innerHTML;
+            document.querySelector('input').value = string;
+            }
+        })
+    })
+</script>
+
+</html>
